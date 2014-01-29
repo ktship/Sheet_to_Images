@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>4DD0B61A-4C7D-445E-88E9-CA06A81051CA</string>
+	<key>IDESourceControlProjectName</key>
+	<string>GetImagesFromPlistAndSpriteSheet</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E982AF8A-3F46-484C-96FD-8B9109A7F637</key>
+		<string>svn://54.249.227.194/home/bitnami/stack/svnRepositories/pkit/branches</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>GetImagesFromPlistAndSpriteSheet/GetImagesFromPlistAndSpriteSheet.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E982AF8A-3F46-484C-96FD-8B9109A7F637</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>E982AF8A-3F46-484C-96FD-8B9109A7F637</key>
+		<string>svn://54.249.227.194/home/bitnami/stack/svnRepositories/pkit</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>svn://54.249.227.194/home/bitnami/stack/svnRepositories/pkit/branches/GetImagesFromPlistAndSpriteSheet/GetImagesFromPlistAndSpriteSheet.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E982AF8A-3F46-484C-96FD-8B9109A7F637</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryBranchesRelativeLocationKey</key>
+			<string>branches</string>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlRepositoryTrunkRelativeLocationKey</key>
+			<string>trunk</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E982AF8A-3F46-484C-96FD-8B9109A7F637</string>
+			<key>IDESourceControlWCCName</key>
+			<string>branches</string>
+		</dict>
+	</array>
+</dict>
+</plist>

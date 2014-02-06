@@ -1,6 +1,4 @@
 Sheet_to_Images
 ===============
 
-It Converts 
-Input : Sheet, plist ( from TexturePacker )
-Output : Images
+Convert spritesheet&plist of TexturePacker to each images.

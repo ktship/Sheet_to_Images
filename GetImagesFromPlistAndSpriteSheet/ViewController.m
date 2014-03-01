@@ -54,16 +54,8 @@
 //            NSLog(@"frames : %@", frames);
             for (NSString* keys in frames) {
                 NSDictionary* pngDict = [frames objectForKey:keys];
-                NSString* textureRect = [pngDict objectForKey:@"textureRect"];
-                NSMutableString* trimmedTR = [NSMutableString string];
-                for ( int ii=0 ; ii<textureRect.length ; ii++ ) {
-                    unsigned short unichar = [textureRect characterAtIndex:ii];
-                    if ( unichar == '}' || unichar == '{' || unichar == ' ') {
-                        continue;
-                    }
-                    [trimmedTR appendString:[NSString stringWithFormat:@"%C", unichar]];
-                }
-                NSArray* rStr = [trimmedTR componentsSeparatedByString:@","];
+                NSString* textureRectStr = [pngDict objectForKey:@"textureRect"];
+                NSArray* rStr = [self strToStrArray:textureRectStr];
                 CGRect cropR;
                 cropR.origin.x = [[rStr objectAtIndex:0] floatValue];
                 cropR.origin.y = [[rStr objectAtIndex:1] floatValue];
@@ -78,14 +70,53 @@
                 if ( isRotated ) {
                    tmpImage = [tmpImage imageRotatedByDegrees:270.0f];
                 }
+                
+                // return trim
+                NSString* spriteSourceSizeStr = [pngDict objectForKey:@"spriteSourceSize"];
+                NSArray* sprSourceSize = [self strToStrArray:spriteSourceSizeStr];
+                float www = [[sprSourceSize objectAtIndex:0] floatValue];
+                float hhh = [[sprSourceSize objectAtIndex:1] floatValue];
+                
+                NSString* spriteColorRectStr = [pngDict objectForKey:@"spriteColorRect"];
+                NSArray* spriteColorRectArray = [self strToStrArray:spriteColorRectStr];
+                float srcX = [[spriteColorRectArray objectAtIndex:0] floatValue];
+                float srcY = [[spriteColorRectArray objectAtIndex:1] floatValue];
+                float srcW = [[spriteColorRectArray objectAtIndex:2] floatValue];
+                float srcH = [[spriteColorRectArray objectAtIndex:3] floatValue];
+                
+                if ( [keys isEqualToString:@"saurianBoss_0184.png"]) {
+                    NSLog(@"backsize : %f, %f", www, hhh);
+                    NSLog(@"rect : %f, %f, %f, %f", srcX, srcY, srcW, srcH);
+                    NSLog(@"tmpImage size : %f, %f,", tmpImage.size.width, tmpImage.size.height);
+
+                }
+                UIImage *retSourceImage = [self drawImage:tmpImage backsize:CGSizeMake(www, hhh) rect:CGRectMake(srcX, srcY, srcW, srcH)];
+                if ( [keys isEqualToString:@"saurianBoss_0184.png"]) {
+                    NSLog(@"retSourceImage size : %f, %f,", retSourceImage.size.width, retSourceImage.size.height);
+                    
+                }
 
                 NSString  *pngPath = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%@", keys]];
-                [UIImagePNGRepresentation(tmpImage) writeToFile:pngPath atomically:YES];
+//                NSLog(@"pngPath : %@", pngPath);
+                [UIImagePNGRepresentation(retSourceImage) writeToFile:pngPath atomically:YES];
             }
         }
     }
     NSLog(@"End");
 
+}
+
+- (NSArray*) strToStrArray:(NSString*)str {
+    NSMutableString* trimmedTR = [NSMutableString string];
+    for ( int ii=0 ; ii<str.length ; ii++ ) {
+        unsigned short unichar = [str characterAtIndex:ii];
+        if ( unichar == '}' || unichar == '{' || unichar == ' ') {
+            continue;
+        }
+        [trimmedTR appendString:[NSString stringWithFormat:@"%C", unichar]];
+    }
+    NSArray* rStr = [trimmedTR componentsSeparatedByString:@","];
+    return rStr;
 }
 
 - (UIImage *)crop:(CGRect)rect from:(UIImage*)srcImage{
@@ -102,5 +133,15 @@
     CGImageRelease(imageRef);
     return result;
 }
+
+-(UIImage *)drawImage:(UIImage *)frontImage backsize:(CGSize)backsize rect:(CGRect)rect
+{
+    UIGraphicsBeginImageContext(backsize);
+    [frontImage drawInRect:rect];
+    UIImage *resultImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return resultImage;
+}
+
 
 @end
